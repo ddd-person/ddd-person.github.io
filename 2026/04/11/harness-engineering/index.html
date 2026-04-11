@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="Harness Engineering（驾驭工程）是2026年兴起的AI工程化范式，通过构建约束系统将不可预测的AI模型驯化为稳定可控的生产工具。本文带你从零入门。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harness Engineering 入门指南：如何把野生 AI 驯化为生产工具">
+<meta property="og:url" content="http://ddd-person.github.io/2026/04/11/harness-engineering/">
+<meta property="og:site_name" content="鸭知道-AI技术分享">
+<meta property="og:description" content="Harness Engineering（驾驭工程）是2026年兴起的AI工程化范式，通过构建约束系统将不可预测的AI模型驯化为稳定可控的生产工具。本文带你从零入门。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-11T00:00:00.000Z">
+<meta property="article:author" content="鸭知道">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Harness">
+<meta property="article:tag" content="AI工程化">
+<meta name="twitter:card" content="summary"><title>Harness Engineering 入门指南：如何把野生 AI 驯化为生产工具 | 鸭知道-AI技术分享</title><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script>
+<style>
+.post-body pre {
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 20px 0;
+  border-left: 4px solid #7c6af7;
+}
+.post-body pre code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: #cdd6f4;
+  background: transparent;
+  white-space: pre;
+  tab-size: 4;
+}
+.post-body code:not(pre code) {
+  background: #e8e8f0;
+  color: #5c5c8a;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.88em;
+}
+</style>
+<meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="th"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="archive"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">鸭知道-AI技术分享</div><div class="header-banner-info__subtitle"></div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Harness Engineering 入门指南：如何把野生 AI 驯化为生产工具</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2026-04-11</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+
+<p>如果你最近关注 AI 工程化领域，一定听说过一个词越来越频繁地出现：<strong>Harness Engineering（驾驭工程）</strong>。</p>
+
+<p>它不是某款具体的软件产品，而是 2026 年初在工程师圈子里迅速蔓延的一种 <strong>AI 工程化思维范式</strong>。简单说，就是：怎么把一个天马行空、飘忽不定的 AI 模型，变成像流水线一样稳定可控的生产工具。</p>
+
+<p>读完这篇文章，你将对 Harness Engineering 的概念、原理、核心方法和实际应用建立完整认知，并能在自己的项目中上手实践。</p>
+
+<hr>
+
+<h2>一、什么是 Harness Engineering？</h2>
+
+<p>"Harness" 这个词来自英语，原意是给马套上"驾具"——一套由缰绳、鞍具组成的约束装置，让奔马在保持速度的同时，能够受人驾驭、按路行进。</p>
+
+<p>Harness Engineering 借用这个比喻，描述的是一种工程化实践：<strong>通过构建一套完整的约束系统，将不可预测的 AI 大模型"驯化"为生产环境中稳定、可控、可审计的工具</strong>。</p>
+
+<p>这个概念的诞生有其历史背景。2023-2025 年，大量团队把 LLM（大语言模型）引入实际业务，但很快就遭遇了一个共同困境：</p>
+
+<blockquote>
+<p>模型能力很强，但输出不稳定。今天给你一个完美答案，明天突然开始胡说八道。无法测试，无法监控，出了问题不知道是模型的锅还是 Prompt 的锅。</p>
+</blockquote>
+
+<p>Harness Engineering 就是为了解决这个问题而诞生的系统性答案。</p>
+
+<hr>
+
+<h2>二、为什么需要 Harness？</h2>
+
+<p>我们来做个对比，看看"裸用 AI"和"Harness 化 AI"的区别：</p>
+
+<table>
+<thead><tr><th style="text-align:left">维度</th><th style="text-align:left">裸用 AI（无 Harness）</th><th style="text-align:left">Harness 化 AI</th></tr></thead>
+<tbody>
+<tr><td>输出稳定性</td><td>随机波动，难以预期</td><td>结构化输出，格式可控</td></tr>
+<tr><td>可测试性</td><td>无法写单元测试</td><td>有明确的评估基准可测试</td></tr>
+<tr><td>可监控性</td><td>黑盒，出问题不知道哪里错了</td><td>全链路日志，可追溯</td></tr>
+<tr><td>错误处理</td><td>模型出错直接崩溃或乱输出</td><td>有 fallback 机制，优雅降级</td></tr>
+<tr><td>迭代效率</td><td>改一个 Prompt 全靠感觉</td><td>量化指标驱动，科学迭代</td></tr>
+<tr><td>成本控制</td><td>Token 用量不可预测</td><td>上下文控制，成本可估算</td></tr>
+</tbody>
+</table>
+
+<p>一句话：<strong>没有 Harness 的 AI 是玩具，有 Harness 的 AI 才是工具。</strong></p>
+
+<hr>
+
+<h2>三、Harness Engineering 的核心原理</h2>
+
+<p>Harness 的本质是给 AI 套上"三层约束"：</p>
+
+<h3>第一层：输入约束（Input Harness）</h3>
+
+<p>控制"什么进入模型"。核心手段包括：</p>
+
+<ul>
+<li><strong>Prompt 模板化</strong>：把 Prompt 从随意字符串变成有版本控制的工程配置。</li>
+<li><strong>输入校验</strong>：用户输入进来之前先过滤、做格式检查，防止注入攻击和无效请求。</li>
+<li><strong>上下文裁剪</strong>：控制塞进模型的上下文长度，既节省 Token 成本，又防止信息噪声干扰输出。</li>
+<li><strong>Few-shot 示例库</strong>：把经过验证的优质示例结构化存储，按需动态注入 Prompt。</li>
+</ul>
+
+<h3>第二层：输出约束（Output Harness）</h3>
+
+<p>控制"什么从模型出来"。核心手段：</p>
+
+<ul>
+<li><strong>结构化输出</strong>：要求模型输出 JSON、XML 等结构化格式，而不是纯文本，方便程序解析。</li>
+<li><strong>输出解析与校验</strong>：对模型输出做格式校验，不符合规范的直接触发重试或 fallback。</li>
+<li><strong>置信度过滤</strong>：结合模型的 logprobs 或外部评估器，对不确定的输出打标记，人工复核。</li>
+</ul>
+
+<h3>第三层：行为约束（Behavior Harness）</h3>
+
+<p>控制"AI 在系统中怎么行动"。核心手段：</p>
+
+<ul>
+<li><strong>Tool Call 白名单</strong>：AI Agent 可以调用的工具/API 提前定义好，不在白名单里的操作一律拦截。</li>
+<li><strong>权限分级</strong>：AI 执行低风险操作可以自动化，高风险操作（如删除、写数据库）必须人工确认。</li>
+<li><strong>执行沙箱</strong>：让 AI 生成的代码在隔离的沙箱环境里试运行，而不是直接在生产环境执行。</li>
+</ul>
+
+<hr>
+
+<h2>四、Harness Engineering 的五个核心实践</h2>
+
+<h3>实践 1：Prompt 版本化管理</h3>
+
+<p>把 Prompt 当成代码一样对待，纳入 Git 版本控制。目录结构示例：</p>
+
+<pre><code class="language-bash">prompts/
+  ├── v1/
+  │   ├── summarize.txt
+  │   └── classify.txt
+  ├── v2/
+  │   ├── summarize.txt   # 更新了Few-shot示例
+  │   └── classify.txt
+  └── CHANGELOG.md        # 记录每个版本改了什么，效果如何</code></pre>
+
+<p>这样做的好处是：每次改了 Prompt 效果变差，可以立刻 rollback；也可以 A/B 测试不同版本。</p>
+
+<h3>实践 2：结构化输出 + 解析层</h3>
+
+<p>不要让模型自由发挥输出格式，明确要求它输出 JSON，并在代码里加解析层：</p>
+
+<pre><code class="language-python">PROMPT = """
+请分析以下用户评论的情感，并以JSON格式返回：
+{
+  "sentiment": "positive|negative|neutral",
+  "confidence": 0.0-1.0,
+  "reason": "简短说明"
+}
+
+用户评论：{comment}
+"""
+
+def analyze_sentiment(comment: str) -> dict:
+    response = llm.call(PROMPT.format(comment=comment))
+    try:
+        result = json.loads(response)
+        # 校验字段完整性
+        assert "sentiment" in result and "confidence" in result
+        return result
+    except (json.JSONDecodeError, AssertionError):
+        # fallback: 返回默认值，记录日志
+        logger.warning(f"输出解析失败: {response}")
+        return {"sentiment": "neutral", "confidence": 0.0, "reason": "解析失败"}</code></pre>
+
+<h3>实践 3：评估基准（Evals）驱动迭代</h3>
+
+<p>这是 Harness Engineering 最核心也最容易被忽视的实践。每次改 Prompt，必须跑评估，而不是凭感觉。</p>
+
+<pre><code class="language-python"># 建立测试集：输入 + 期望输出
+test_cases = [
+    {"input": "这个产品太棒了！", "expected": "positive"},
+    {"input": "完全是浪费钱",    "expected": "negative"},
+    {"input": "一般吧，没啥特别", "expected": "neutral"},
+    # ...至少50条以上才有统计意义
+]
+
+def run_eval(prompt_version: str) -> float:
+    correct = 0
+    for case in test_cases:
+        result = analyze_sentiment(case["input"])
+        if result["sentiment"] == case["expected"]:
+            correct += 1
+    accuracy = correct / len(test_cases)
+    print(f"Prompt {prompt_version} 准确率: {accuracy:.1%}")
+    return accuracy</code></pre>
+
+<p>只有评估准确率提升了，才算 Prompt 改进成功。这是 Harness 的工程纪律。</p>
+
+<h3>实践 4：全链路可观测性</h3>
+
+<p>每一次 AI 调用都应该记录完整信息，方便事后排查：</p>
+
+<pre><code class="language-python">def tracked_llm_call(prompt: str, context: dict) -> str:
+    trace_id = uuid.uuid4()
+    start_time = time.time()
+
+    response = llm.call(prompt)
+
+    # 记录完整链路信息
+    logger.info({
+        "trace_id": str(trace_id),
+        "prompt_version": context.get("prompt_version"),
+        "input_tokens": count_tokens(prompt),
+        "output_tokens": count_tokens(response),
+        "latency_ms": int((time.time() - start_time) * 1000),
+        "user_id": context.get("user_id"),
+        "response_preview": response[:200]  # 只记前200字
+    })
+
+    return response</code></pre>
+
+<h3>实践 5：人机协作审核（Human-in-the-Loop）</h3>
+
+<p>对高风险操作，AI 不能直接执行，必须经过人工确认。可以用置信度阈值来判断：</p>
+
+<pre><code class="language-python">def execute_with_guardrail(action: dict, confidence: float):
+    HIGH_RISK_ACTIONS = {"delete_record", "send_email", "transfer_money"}
+
+    if action["type"] in HIGH_RISK_ACTIONS or confidence < 0.85:
+        # 低置信度或高风险操作 → 推送给人工审核队列
+        review_queue.push({
+            "action": action,
+            "confidence": confidence,
+            "created_at": datetime.now()
+        })
+        return {"status": "pending_review"}
+    else:
+        # 高置信度低风险操作 → 自动执行
+        return executor.run(action)</code></pre>
+
+<hr>
+
+<h2>五、Harness Engineering 的完整架构图</h2>
+
+<p>把上面五个实践组合起来，一个完整的 Harness 系统架构如下：</p>
+
+<pre><code>用户请求
+    ↓
+[输入层 Input Harness]
+  · 输入校验 & 清洗
+  · Prompt 模板渲染（从版本库读取）
+  · 上下文裁剪 & Few-shot注入
+    ↓
+[模型调用层]
+  · LLM API 调用（带重试机制）
+  · Token 成本记录
+    ↓
+[输出层 Output Harness]
+  · 结构化解析 & 格式校验
+  · 置信度评估
+  · 不合格输出触发重试/fallback
+    ↓
+[行为层 Behavior Harness]
+  · Action 白名单校验
+  · 高风险操作推入人工审核队列
+  · 沙箱执行（如涉及代码运行）
+    ↓
+[可观测层]
+  · 全链路日志（trace_id 串联）
+  · 指标上报（准确率、延迟、成本）
+  · 告警配置（输出异常率超阈值触发）
+    ↓
+最终结果返回给用户</code></pre>
+
+<hr>
+
+<h2>六、真实案例：给客服机器人套上 Harness</h2>
+
+<p>假设你们公司有一个 AI 客服，需要自动回复用户问题并在必要时创建工单。没有 Harness 的情况下，它可能会：</p>
+<ul>
+<li>随机编造并不存在的退款政策</li>
+<li>把用户倾诉的不满情绪识别成"满意"</li>
+<li>一言不合给用户创建了一张工单，但信息填错了</li>
+</ul>
+
+<p>套上 Harness 之后：</p>
+
+<ol>
+<li><strong>Input Harness</strong>：Prompt 里注入企业知识库（退款政策、FAQ），并限制模型只能基于知识库内容回答，禁止"编造"。</li>
+<li><strong>Output Harness</strong>：回复内容必须包含 <code>{"intent": "...", "response": "...", "create_ticket": true/false}</code> 结构，解析失败自动转人工。</li>
+<li><strong>Behavior Harness</strong>：<code>create_ticket</code> 为 true 时，先展示给用户确认（"我将为您创建工单，是否确认？"），用户确认后才真正调用工单 API。</li>
+<li><strong>Evals</strong>：维护一个 200 条客服对话的测试集，每次更新 Prompt 必须跑评估，意图识别准确率 ≥ 92% 才能上线。</li>
+</ol>
+
+<p>这套 Harness 一旦运转起来，AI 客服的输出质量和稳定性会有质的飞跃。</p>
+
+<hr>
+
+<h2>七、入门 Harness 的学习路径</h2>
+
+<p>如果你想从零开始实践 Harness Engineering，建议按以下路径走：</p>
+
+<ol>
+<li>
+  <strong>第一步：把 Prompt 放进版本控制</strong><br>
+  从今天起，不要在代码里硬编码 Prompt 字符串。把它们抽成独立的 <code>.txt</code> 或 <code>.yaml</code> 文件，纳入 Git 管理，建立 CHANGELOG。
+</li>
+<li>
+  <strong>第二步：要求结构化输出</strong><br>
+  给你的每一个 AI 任务定义清晰的输出 Schema，加上解析层和 fallback 处理。
+</li>
+<li>
+  <strong>第三步：建立测试集（Evals）</strong><br>
+  收集至少 50-100 条真实输入输出用例，建立评估脚本。这是 Harness 的基础设施，值得投入。
+</li>
+<li>
+  <strong>第四步：接入可观测性</strong><br>
+  每次 LLM 调用都打日志，至少记录：调用时间、Token 用量、输出结果摘要、是否触发 fallback。
+</li>
+<li>
+  <strong>第五步：对高风险操作加人工审核</strong><br>
+  识别出你的业务中 AI 可能造成不可逆损失的操作，为它们加上确认环节。
+</li>
+</ol>
+
+<hr>
+
+<h2>八、总结</h2>
+
+<p>Harness Engineering 的本质，是把软件工程中成熟的工程实践（测试、版本控制、可观测性、权限控制）系统性地应用到 AI 开发领域。</p>
+
+<p>它不是在限制 AI，而是在解放 AI——让 AI 的能力真正能够在生产环境中释放出来，而不是一直停留在 Demo 阶段。</p>
+
+<p>记住这句话：<strong>没有 Harness 的 AI 是玩具，有 Harness 的 AI 才是工具。</strong></p>
+
+<p>如果你想进一步探讨 AI 工程化的话题，欢迎关注公众号「鸭知道」，或者直接加我微信 <strong>myddd9527</strong> 交流！</p>
+
+<hr>
+
+<div style="text-align: center; margin-top: 30px;">
+<img src="/images/yazhidao_qrcode.jpg" alt="微信公众号：鸭知道" style="max-width: 220px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+<p style="color: #666; font-size: 0.9em;">微信扫一扫 关注「鸭知道」</p>
+</div>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI/">AI</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/Harness/">Harness</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI工程化/">AI工程化</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2026/04/11/claude-code-guide/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Claude Code 实战技术分享</span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/logo/logo.jpeg" alt="avatar"></div><p class="sidebar-ov-author__text">鸭知道</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">29</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">13</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2026</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>鸭知道</span><span class="footer__devider">|</span><span>浙ICP备19020857号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>
