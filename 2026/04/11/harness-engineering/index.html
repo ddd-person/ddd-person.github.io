@@ -261,33 +261,11 @@ def run_eval(prompt_version: str) -> float:
 
 <p>把上面五个实践组合起来，一个完整的 Harness 系统架构如下：</p>
 
-<pre><code>用户请求
-    ↓
-[输入层 Input Harness]
-  · 输入校验 & 清洗
-  · Prompt 模板渲染（从版本库读取）
-  · 上下文裁剪 & Few-shot注入
-    ↓
-[模型调用层]
-  · LLM API 调用（带重试机制）
-  · Token 成本记录
-    ↓
-[输出层 Output Harness]
-  · 结构化解析 & 格式校验
-  · 置信度评估
-  · 不合格输出触发重试/fallback
-    ↓
-[行为层 Behavior Harness]
-  · Action 白名单校验
-  · 高风险操作推入人工审核队列
-  · 沙箱执行（如涉及代码运行）
-    ↓
-[可观测层]
-  · 全链路日志（trace_id 串联）
-  · 指标上报（准确率、延迟、成本）
-  · 告警配置（输出异常率超阈值触发）
-    ↓
-最终结果返回给用户</code></pre>
+<div style="text-align: center; margin: 24px 0;">
+<img src="/images/harness_architecture.png" alt="Harness Engineering 完整架构图" style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+<p style="color: #888; font-size: 0.85em; margin-top: 8px;">▲ Harness Engineering 完整系统架构</p>
+</div>
+
 
 <hr>
 
