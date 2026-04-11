@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="Claude Code 是 Anthropic 官方推出的 AI 编程助手命令行工具，本文分享实战使用技巧与进阶玩法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code 实战技术分享：让 AI 帮你写代码的正确姿势">
+<meta property="og:url" content="http://ddd-person.github.io/2026/04/11/claude-code-guide/">
+<meta property="og:site_name" content="鸭知道-AI技术分享">
+<meta property="og:description" content="Claude Code 是 Anthropic 官方推出的 AI 编程助手命令行工具，本文分享实战使用技巧与进阶玩法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-11T00:00:00.000Z">
+<meta property="article:author" content="鸭知道">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Claude">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary"><title>Claude Code 实战技术分享：让 AI 帮你写代码的正确姿势 | 鸭知道-AI技术分享</title><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="th"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="archive"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">鸭知道-AI技术分享</div><div class="header-banner-info__subtitle"></div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Claude Code 实战技术分享：让 AI 帮你写代码的正确姿势</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2026-04-11</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+
+<p>最近 <strong>Claude Code</strong> 突然成为了程序员圈里的顶流话题。和那些只会在聊天框里帮你回答问题的 AI 不一样，Claude Code 是一个真正能在你的终端里"干活"的 AI 编程工具——读代码、改代码、跑命令，它全包了。</p>
+
+<p>作为一个已经用了一段时间的重度用户，今天来分享一些实战心得，帮助大家少走弯路。</p>
+
+<hr>
+
+<h2>一、Claude Code 是什么？</h2>
+
+<p>Claude Code 是 Anthropic 官方出品的 <strong>AI 编程命令行工具（CLI）</strong>，核心能力是：</p>
+
+<ul>
+<li>🔍 <strong>理解你的整个项目代码库</strong>（不是只看一个文件）</li>
+<li>✏️ <strong>直接读写文件</strong>，修改真实代码</li>
+<li>🖥️ <strong>在终端执行命令</strong>，例如跑测试、安装依赖</li>
+<li>🌐 <strong>调用浏览器</strong>，抓取网页内容辅助编程</li>
+<li>🔁 <strong>多步骤自主完成任务</strong>，不是一问一答</li>
+</ul>
+
+<p>简单来说，它不是一个"建议者"，而是一个真正动手干活的 <strong>AI 程序员助手</strong>。</p>
+
+<hr>
+
+<h2>二、安装与配置</h2>
+
+<h3>1. 安装</h3>
+<p>前提：需要 Node.js 18+</p>
+
+<pre><code class="language-bash">npm install -g @anthropic-ai/claude-code</code></pre>
+
+<h3>2. 配置 API Key</h3>
+<p>你需要一个 Claude 的 API Key，可以在 <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> 创建。</p>
+
+<pre><code class="language-bash">export ANTHROPIC_API_KEY=sk-ant-xxxxxxxx</code></pre>
+
+<h3>3. 启动</h3>
+<p>进入你的项目目录，直接运行：</p>
+
+<pre><code class="language-bash">cd your-project
+claude</code></pre>
+
+<p>它会自动读取当前目录的所有代码文件作为上下文，然后进入交互式对话模式。</p>
+
+<hr>
+
+<h2>三、核心使用技巧</h2>
+
+<h3>技巧 1：用自然语言描述任务，越具体越好</h3>
+
+<p>❌ 不好的 prompt：</p>
+<blockquote><p>帮我优化一下代码</p></blockquote>
+
+<p>✅ 好的 prompt：</p>
+<blockquote><p>帮我把 <code>UserService.java</code> 中的 <code>getUserById</code> 方法改成异步的，使用 CompletableFuture 包装，并添加异常处理逻辑，日志格式遵循项目现有的 Slf4j 风格</p></blockquote>
+
+<p>Claude Code 理解上下文的能力很强，但前提是你给够信息。<strong>把背景、约束、期望结果都说清楚</strong>，效果会成倍提升。</p>
+
+<h3>技巧 2：善用 <code>/add</code> 命令指定文件</h3>
+
+<p>默认情况下 Claude Code 会扫描整个项目，但如果项目很大，可以用 <code>/add</code> 精准指定要处理的文件：</p>
+
+<pre><code class="language-bash">/add src/main/service/OrderService.java
+/add src/main/repository/OrderRepository.java</code></pre>
+
+<p>这样它只会聚焦在这几个文件上操作，不会误改其他无关代码。</p>
+
+<h3>技巧 3：配合 Git 使用，安全感拉满</h3>
+
+<p>Claude Code 会直接修改你的真实文件，所以 <strong>强烈建议在干净的 Git 分支上操作</strong>：</p>
+
+<pre><code class="language-bash">git checkout -b feature/ai-refactor
+claude  # 开始 AI 操作
+git diff  # 看看它改了什么
+git add . && git commit -m "AI assisted refactor"</code></pre>
+
+<p>这样即使 AI 改出问题，一个 <code>git checkout .</code> 就能全部撤销，完全无风险。</p>
+
+<h3>技巧 4：让它写测试，不只是写代码</h3>
+
+<p>很多人只让 Claude Code 写业务代码，其实它在写单元测试方面表现非常出色。直接说：</p>
+
+<blockquote><p>为 <code>PaymentService</code> 中的 <code>processRefund</code> 方法写 JUnit 5 单元测试，覆盖正常退款、余额不足、订单不存在三种场景，使用 Mockito mock 依赖</p></blockquote>
+
+<p>它写出来的测试代码通常直接可用，命名清晰，覆盖率也不低。</p>
+
+<h3>技巧 5：Code Review 模式</h3>
+
+<p>让 Claude Code 帮你做代码 Review，发现潜在问题：</p>
+
+<blockquote><p>Review 一下 <code>src/controller</code> 目录下的所有 Controller，检查是否有未处理的异常、缺失的参数校验、可能的 SQL 注入风险，给出改进建议</p></blockquote>
+
+<hr>
+
+<h2>四、进阶玩法：CLAUDE.md 自定义规范文件</h2>
+
+<p>这是很多人不知道的杀手锏功能。在项目根目录新建一个 <code>CLAUDE.md</code> 文件，写入你的项目规范，Claude Code 每次启动都会自动读取：</p>
+
+<pre><code class="language-markdown"># 项目规范
+
+## 技术栈
+- Java 17 + Spring Boot 3.x
+- MyBatis-Plus 作为 ORM
+- Redis 做缓存，统一使用 RedisTemplate
+
+## 代码规范
+- 所有 Service 方法必须加 @Transactional 注解
+- 日志统一用 Slf4j，禁止使用 System.out.println
+- 异常统一抛出 BusinessException，不允许 catch 后吞掉
+
+## 命名规范
+- 接口以 I 开头，例如 IUserService
+- VO 类放在 vo 包下，DTO 放在 dto 包下
+</code></pre>
+
+<p>有了这个文件，你不需要每次都反复交代规范，Claude Code 会自动遵守。<strong>这一步能节省你 80% 的重复沟通成本。</strong></p>
+
+<hr>
+
+<h2>五、常见坑与注意事项</h2>
+
+<h3>⚠️ 坑 1：它有时候会过度修改</h3>
+<p>Claude Code 比较"热情"，有时候你只让它改一个方法，它可能顺手把周边代码也重构了。建议每次任务结束后用 <code>git diff</code> 仔细检查，确认改动范围符合预期。</p>
+
+<h3>⚠️ 坑 2：复杂业务逻辑还是需要人工把关</h3>
+<p>AI 写的代码逻辑层面大多正确，但涉及到你们系统特有的业务规则（比如特殊的状态机、复杂的权限逻辑），它容易"凭想象"写，需要你仔细核对。</p>
+
+<h3>⚠️ 坑 3：费用控制</h3>
+<p>Claude Code 按 token 消耗计费，大项目扫描上下文较多，成本会比较高。建议用 <code>/add</code> 精确指定文件范围，避免不必要的 token 浪费。</p>
+
+<hr>
+
+<h2>六、总结</h2>
+
+<p>Claude Code 代表了 AI 辅助编程的一个新范式——从"问答式"到"代理式"。它不只是告诉你答案，而是<strong>真的替你去做</strong>。</p>
+
+<p>用好它的关键在于：</p>
+<ol>
+<li><strong>Prompt 要具体</strong>，背景、约束、期望都说清楚</li>
+<li><strong>配置好 CLAUDE.md</strong>，一次规范，终身受益</li>
+<li><strong>配合 Git 使用</strong>，大胆用、放心改</li>
+<li><strong>人工 Review 不能省</strong>，AI 是助手不是替代品</li>
+</ol>
+
+<p>如果你也在用 Claude Code，欢迎关注公众号「鸭知道」，和我一起交流更多 AI 工具的实战经验！</p>
+
+<hr>
+
+<div style="text-align: center; margin-top: 30px;">
+<img src="/images/yazhidao_qrcode.jpg" alt="微信公众号：鸭知道" style="max-width: 220px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+<p style="color: #666; font-size: 0.9em;">微信扫一扫 关注「鸭知道」</p>
+</div>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI/">AI</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/Claude/">Claude</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2026/04/11/ai-service-products/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">鸭知道AI服务：GPT、Claude及各种AI账号选购指南</span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/logo/logo.jpeg" alt="avatar"></div><p class="sidebar-ov-author__text">鸭知道</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">28</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">13</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2026</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>鸭知道</span><span class="footer__devider">|</span><span>浙ICP备19020857号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>
