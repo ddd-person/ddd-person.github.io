@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="Hermes Agent 是 Nous Research 出品的自我进化 AI Agent，能跨平台聊天、自动学技能、记住你的偏好，堪称 OpenClaw 的全面升级版。一行命令安装，本文带你了解它是什么、能干嘛、怎么用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hermes Agent：一个会自我进化的 AI Agent，OpenClaw 的全面替代者">
+<meta property="og:url" content="http://ddd-person.github.io/2026/04/13/hermes-agent-guide/">
+<meta property="og:site_name" content="鸭知道-个人博客">
+<meta property="og:description" content="Hermes Agent 是 Nous Research 出品的自我进化 AI Agent，能跨平台聊天、自动学技能、记住你的偏好，堪称 OpenClaw 的全面升级版。一行命令安装，本文带你了解它是什么、能干嘛、怎么用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-13T00:00:00.000Z">
+<meta property="article:author" content="鸭知道">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="Hermes">
+<meta name="twitter:card" content="summary"><title>Hermes Agent：一个会自我进化的 AI Agent，OpenClaw 的全面替代者 | 鸭知道-个人博客</title><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script>
+<style>
+.post-body pre {
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 20px 0;
+  border-left: 4px solid #7c6af7;
+}
+.post-body pre code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: #cdd6f4;
+  background: transparent;
+  white-space: pre;
+  tab-size: 4;
+}
+.post-body code:not(pre code) {
+  background: #e8e8f0;
+  color: #5c5c8a;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.88em;
+}
+</style>
+<meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="th"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="archive"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">鸭知道-个人博客</div><div class="header-banner-info__subtitle"></div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Hermes Agent：一个会自我进化的 AI Agent，OpenClaw 的全面替代者</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2026-04-13</span></span><span class="post-meta-item post-meta-item--category"><span class="post-meta-item__icon"><i class="far fa-folder"></i></span><span class="post-meta-item__info">分类于</span><span class="post-meta-item__value"><a href="/categories/AI%E5%BA%94%E7%94%A8/">AI应用</a></span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+
+<p>你有没有这种感觉：跟 AI 聊天，每次都像跟一个<strong>失忆</strong>的人对话？</p>
+
+<p>上次你花了半小时跟它说清楚了你的项目背景、代码风格偏好、技术栈选择，结果关掉窗口再打开——它全忘了。你得从头再来一遍。</p>
+
+<p>更烦的是，你在电脑上跟它聊到一半，想出门在手机上继续？不好意思，上下文不通，换个平台就是一个全新的对话。</p>
+
+<p>今天介绍的 <strong>Hermes Agent</strong>，就是来终结这个痛苦的。它是目前我在 GitHub 上看到的最有野心的 AI Agent 项目——不是那种「你问我答」的聊天机器人，而是一个<strong>会自我进化、跨平台运行、越用越聪明</strong>的真正 Agent。</p>
+
+<blockquote>
+<p>项目地址：<a href="https://github.com/NousResearch/hermes-agent" target="_blank">https://github.com/NousResearch/hermes-agent</a><br>
+Stars：69.9k ⭐ | 开源协议：MIT | 作者：Nous Research</p>
+</blockquote>
+
+<p>如果你之前用过 OpenClaw（圈子里叫"小龙虾"），那 Hermes Agent 可以看作它的<strong>全面升级版</strong>，而且官方直接内置了一键迁移功能。</p>
+
+<hr>
+
+<h2>一、Hermes Agent 是什么？</h2>
+
+<p>一句话概括：<strong>Hermes Agent 是一个会自我学习、自我进化的 AI 智能体</strong>。</p>
+
+<p>它的 slogan 是 "The agent that grows with you"——<strong>和你一起成长的 Agent</strong>。</p>
+
+<p>跟普通的 ChatGPT 或者 Claude 对话不同，Hermes Agent 是一个可以<strong>部署在你自己服务器上</strong>的独立 Agent。它有长期记忆、会自动学习新技能、可以跨平台（Telegram/Discord/微信等）跟你对话，而且不绑定任何一家 AI 模型——你想用 GPT 就用 GPT，想用 Claude 就切 Claude，一行命令的事。</p>
+
+<p>来看看它跟普通 AI 聊天的区别：</p>
+
+<table>
+<thead><tr><th style="text-align:left">维度</th><th style="text-align:left">普通 AI 聊天</th><th style="text-align:left">Hermes Agent</th></tr></thead>
+<tbody>
+<tr><td>记忆</td><td>关窗口就忘，每次从头来</td><td>跨会话长期记忆，越用越懂你</td></tr>
+<tr><td>平台</td><td>只能在网页/APP 里用</td><td>Telegram、Discord、Slack、命令行都行</td></tr>
+<tr><td>学习能力</td><td>不会变，用100次和用1次一样</td><td>自动把经验沉淀为技能，越来越强</td></tr>
+<tr><td>模型绑定</td><td>绑死一家（GPT 或 Claude）</td><td>随时切换，200+ 模型任选</td></tr>
+<tr><td>部署位置</td><td>厂商的服务器上</td><td>你自己的机器上，数据全在你手里</td></tr>
+<tr><td>自动化</td><td>得你手动发消息才干活</td><td>支持定时任务，自动在后台执行</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>二、核心能力——为什么说它会"自我进化"？</h2>
+
+<h3>1. 闭环学习系统</h3>
+
+<p>这是 Hermes Agent 最核心的能力，也是它和其他 Agent 最大的区别。</p>
+
+<p>当它完成一项复杂任务后，它会<strong>自动</strong>把这次的工作流总结成一个「技能文件」（Markdown 格式）。下次遇到类似任务，它不会从零开始摸索，而是<strong>直接调用之前沉淀的经验</strong>。</p>
+
+<p>举个例子：</p>
+<ul>
+<li>第一次让它部署一个 Node.js 项目，它可能需要摸索一阵</li>
+<li>完成后，它自动把"部署 Node.js 项目"这个流程写成一个技能</li>
+<li>第二次让它部署，它直接调用这个技能，又快又稳</li>
+</ul>
+
+<p>这就是所谓的<strong>"用得越多越聪明"</strong>——不是营销噱头，是真的有机制在背后跑。</p>
+
+<h3>2. 持久化记忆</h3>
+
+<p>Hermes Agent 用 SQLite 全文搜索 + LLM 总结机制来管理记忆。它会记住：</p>
+
+<ul>
+<li>你的技术栈偏好（"我用 React，不用 Vue"）</li>
+<li>你的沟通风格（"我喜欢简洁的回答，不要啰嗦"）</li>
+<li>之前对话的关键上下文</li>
+</ul>
+
+<p>而且这些记忆是<strong>跨会话、跨平台</strong>的。你在命令行里跟它说了一遍你的偏好，切到 Telegram 上它依然记得。</p>
+
+<h3>3. 多平台通讯网关</h3>
+
+<p>这个功能简直太爽了。它内置统一网关，直接支持：</p>
+
+<ul>
+<li><strong>Telegram</strong></li>
+<li><strong>Discord</strong></li>
+<li><strong>Slack</strong></li>
+<li><strong>WhatsApp</strong></li>
+<li><strong>Signal</strong></li>
+<li><strong>Email</strong></li>
+</ul>
+
+<p>也就是说，你可以在电脑上用命令行给它下任务，然后出门在 Telegram 上查看进度和结果。一个 Agent，所有渠道共享同一套技能和记忆。</p>
+
+<h3>4. 不锁定模型</h3>
+
+<p>一行命令切换 AI 模型：</p>
+
+<pre><code class="language-bash">hermes model</code></pre>
+
+<p>支持的模型源包括：</p>
+
+<ul>
+<li><strong>Nous Portal</strong>（Nous Research 自家的）</li>
+<li><strong>OpenRouter</strong>（200+ 模型随便选）</li>
+<li><strong>OpenAI</strong>（GPT 系列）</li>
+<li><strong>Anthropic</strong>（Claude 系列）</li>
+<li>以及你自己的本地模型端点</li>
+</ul>
+
+<p>没有厂商锁定，没有代码改动，切模型就跟切频道一样简单。</p>
+
+<h3>5. 40+ 内置工具</h3>
+
+<p>Hermes Agent 开箱即用的工具集非常丰富：</p>
+
+<ul>
+<li>终端操作 & 文件管理</li>
+<li>网页搜索 & 浏览器自动化</li>
+<li>代码执行</li>
+<li>图像生成</li>
+<li>语音转文字</li>
+<li>MCP 协议集成（连接各种外部 API）</li>
+</ul>
+
+<h3>6. 定时自动化（Cron）</h3>
+
+<p>支持自然语言设置定时任务。你可以跟它说：</p>
+
+<blockquote>
+<p>"每天早上 9 点帮我整理一份 GitHub Trending 摘要发到 Telegram"</p>
+</blockquote>
+
+<p>它就会在后台默默执行，到点给你推送结果。</p>
+
+<hr>
+
+<h2>三、跟 OpenClaw（小龙虾）比，强在哪？</h2>
+
+<p>很多人之前用的是 OpenClaw，那 Hermes Agent 为什么被称为它的"替代者"？</p>
+
+<p>首先，Hermes Agent 官方直接提供了 <strong>OpenClaw 一键迁移</strong>功能：</p>
+
+<pre><code class="language-bash"># 交互式迁移
+hermes claw migrate
+
+# 预览会迁移什么
+hermes claw migrate --dry-run
+
+# 只迁移用户数据（不含密钥）
+hermes claw migrate --preset user-data</code></pre>
+
+<p>会自动导入你在 OpenClaw 里的：</p>
+
+<ul>
+<li><strong>SOUL.md</strong> — 人格文件</li>
+<li><strong>记忆</strong> — MEMORY.md 和 USER.md</li>
+<li><strong>技能</strong> — 用户创建的技能文件</li>
+<li><strong>命令白名单</strong> — 审批规则</li>
+<li><strong>消息配置</strong> — 各平台的设置</li>
+</ul>
+
+<p>设计上，Hermes Agent 相比 OpenClaw 的核心升级在于：<strong>闭环学习系统</strong>和<strong>Honcho 用户建模</strong>。前者让 Agent 能自动积累经验，后者让 Agent 在后台默默观察你的沟通风格和偏好，回复越来越"对味"。</p>
+
+<hr>
+
+<h2>四、怎么安装？一行命令搞定</h2>
+
+<h3>快速安装</h3>
+
+<p>支持 Linux、macOS、WSL2：</p>
+
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash</code></pre>
+
+<p>安装完之后：</p>
+
+<pre><code class="language-bash"># 重新加载 shell
+source ~/.bashrc   # 如果用 zsh 则 source ~/.zshrc
+
+# 启动 Hermes！
+hermes</code></pre>
+
+<h3>常用命令速查</h3>
+
+<table>
+<thead><tr><th style="text-align:left">命令</th><th style="text-align:left">用途</th></tr></thead>
+<tbody>
+<tr><td><code>hermes</code></td><td>启动交互式 CLI，开始对话</td></tr>
+<tr><td><code>hermes model</code></td><td>选择/切换 AI 模型</td></tr>
+<tr><td><code>hermes tools</code></td><td>配置启用哪些工具</td></tr>
+<tr><td><code>hermes gateway</code></td><td>启动消息网关（Telegram、Discord 等）</td></tr>
+<tr><td><code>hermes setup</code></td><td>运行完整的初始化向导</td></tr>
+<tr><td><code>hermes update</code></td><td>更新到最新版本</td></tr>
+<tr><td><code>hermes doctor</code></td><td>诊断问题</td></tr>
+</tbody>
+</table>
+
+<h3>对话中的常用指令</h3>
+
+<table>
+<thead><tr><th style="text-align:left">指令</th><th style="text-align:left">用途</th></tr></thead>
+<tbody>
+<tr><td><code>/new</code></td><td>开始新对话</td></tr>
+<tr><td><code>/model [provider:model]</code></td><td>切换模型</td></tr>
+<tr><td><code>/personality [name]</code></td><td>切换人格</td></tr>
+<tr><td><code>/skills</code></td><td>查看已有技能</td></tr>
+<tr><td><code>/retry</code></td><td>重新生成回复</td></tr>
+<tr><td><code>/compress</code></td><td>压缩当前对话上下文</td></tr>
+<tr><td><code>/usage</code></td><td>查看 Token 用量</td></tr>
+<tr><td><code>/insights [--days N]</code></td><td>查看使用洞察</td></tr>
+</tbody>
+</table>
+
+<h3>Android 用户</h3>
+
+<p>Hermes Agent 甚至支持在手机上通过 <strong>Termux</strong> 运行。具体安装方式参见<a href="https://hermes-agent.nousresearch.com/docs/getting-started/termux" target="_blank">官方 Termux 指南</a>。</p>
+
+<p><strong>注意：</strong>Windows 原生不支持，需要先装 <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank">WSL2</a>。</p>
+
+<hr>
+
+<h2>五、Hermes Agent 的部署灵活度</h2>
+
+<p>这一点也值得单独说。Hermes Agent 的运行环境极其灵活：</p>
+
+<ul>
+<li><strong>最低配</strong>：一台 $5/月 的 VPS 就能跑</li>
+<li><strong>最高配</strong>：GPU 集群、Serverless 基础设施（如 Modal、Daytona）</li>
+<li><strong>本地</strong>：你的 Mac / Linux 笔记本</li>
+<li><strong>手机</strong>：Android 通过 Termux</li>
+</ul>
+
+<p>而且它不绑定你的电脑——你在服务器上跑着 Hermes Agent，人在外面通过 Telegram 给它发消息下任务，它在云端执行完把结果推给你。真正的<strong>「AI 管家」</strong>体验。</p>
+
+<hr>
+
+<h2>六、安全机制</h2>
+
+<p>让一个 AI Agent 在你的服务器上自主执行操作，安全自然是第一考虑。Hermes Agent 内置了几层防护：</p>
+
+<ul>
+<li><strong>指令审批流</strong>：危险操作需要你手动确认</li>
+<li><strong>危险模式拦截</strong>：自动识别和阻止高风险行为</li>
+<li><strong>沙箱执行</strong>：支持 Docker、SSH、Singularity 等容器沙箱</li>
+<li><strong>命令白名单</strong>：只有白名单内的操作才能自动执行</li>
+</ul>
+
+<hr>
+
+<h2>七、适合谁用？</h2>
+
+<ul>
+<li><strong>开发者/极客</strong>：想要一个常驻的 AI 助手，深度参与你的项目，而且不用每次重新交代背景</li>
+<li><strong>自动化爱好者</strong>：需要把网页抓取、数据分析、定期报告等工作流自动化，而且希望这些流程越跑越成熟</li>
+<li><strong>跨设备工作者</strong>：电脑上开发，手机上查看进度，一个 Agent 所有场景无缝衔接</li>
+<li><strong>OpenClaw 用户</strong>：如果你在用"小龙虾"，Hermes Agent 是它的官方精神续作，一键迁移无痛切换</li>
+</ul>
+
+<hr>
+
+<h2>八、完整文档 & 社区</h2>
+
+<ul>
+<li><strong>官方文档</strong>：<a href="https://hermes-agent.nousresearch.com/docs/" target="_blank">hermes-agent.nousresearch.com/docs</a></li>
+<li><strong>GitHub</strong>：<a href="https://github.com/NousResearch/hermes-agent" target="_blank">NousResearch/hermes-agent</a></li>
+<li><strong>团队</strong>：<a href="https://nousresearch.com" target="_blank">Nous Research</a>——在 AI 开源社区声望很高的研究团队</li>
+</ul>
+
+<p>文档结构非常完善，从快速入门到架构设计都有：</p>
+
+<ul>
+<li><a href="https://hermes-agent.nousresearch.com/docs/getting-started/quickstart" target="_blank">Quickstart 快速开始</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/skills" target="_blank">Skills 技能系统</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/memory" target="_blank">Memory 记忆系统</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp" target="_blank">MCP 协议集成</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/security" target="_blank">Security 安全机制</a></li>
+</ul>
+
+<hr>
+
+<h2>九、总结</h2>
+
+<p>Hermes Agent 用一句话概括：</p>
+
+<blockquote>
+<p><strong>它是目前开源社区里最接近「个人 AI 管家」的项目——能记住你、能进化、能跨平台、不锁厂商、数据在你手里。</strong></p>
+</blockquote>
+
+<p>如果你之前用 OpenClaw，那现在可以无缝切换过来了。如果你还没用过任何 AI Agent，那 Hermes Agent 是一个非常好的起点——一行命令装好，开聊就行。</p>
+
+<p>我还没深度体验过这个项目，后续用了之后再来写实战分享。不过光看它的设计理念和功能清单，已经足够让人期待了。</p>
+
+<p>如果你想进一步探讨 AI 编程的话题，欢迎关注公众号「AI早咖啡」，或者直接加我微信 <strong>myddd9527</strong> 交流！</p>
+
+<hr>
+
+<div style="text-align: center; margin-top: 30px;">
+<img src="/images/aizaokafeiqr.jpg" alt="微信公众号：AI早咖啡" style="max-width: 220px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+<p style="color: #666; font-size: 0.9em;">微信扫一扫 关注「AI早咖啡」</p>
+</div>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI/">AI</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI-Agent/">AI Agent</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/Hermes/">Hermes</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2026/04/13/superpowers-guide/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Superpowers：给你的 AI 编程助手装上「资深工程师」的大脑</span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/logo/logo.jpeg" alt="avatar"></div><p class="sidebar-ov-author__text">鸭知道</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">31</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">19</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2026</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>鸭知道</span><span class="footer__devider">|</span><span>浙ICP备19020857号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>

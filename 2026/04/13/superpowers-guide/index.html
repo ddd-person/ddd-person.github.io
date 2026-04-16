@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="Superpowers 是一套给 AI 编程助手装的「资深工程师工作流」，让 AI 不再问一句答一句，而是像真正的工程师一样思考、规划、执行。本文带你了解它是什么、能干嘛、怎么用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Superpowers：给你的 AI 编程助手装上「资深工程师」的大脑">
+<meta property="og:url" content="http://ddd-person.github.io/2026/04/13/superpowers-guide/">
+<meta property="og:site_name" content="鸭知道-个人博客">
+<meta property="og:description" content="Superpowers 是一套给 AI 编程助手装的「资深工程师工作流」，让 AI 不再问一句答一句，而是像真正的工程师一样思考、规划、执行。本文带你了解它是什么、能干嘛、怎么用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-13T00:00:00.000Z">
+<meta property="article:author" content="鸭知道">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AI编程">
+<meta property="article:tag" content="Claude Code">
+<meta name="twitter:card" content="summary"><title>Superpowers：给你的 AI 编程助手装上「资深工程师」的大脑 | 鸭知道-个人博客</title><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script>
+<style>
+.post-body pre {
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 20px 0;
+  border-left: 4px solid #7c6af7;
+}
+.post-body pre code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: #cdd6f4;
+  background: transparent;
+  white-space: pre;
+  tab-size: 4;
+}
+.post-body code:not(pre code) {
+  background: #e8e8f0;
+  color: #5c5c8a;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.88em;
+}
+</style>
+<meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="th"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="archive"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">鸭知道-个人博客</div><div class="header-banner-info__subtitle"></div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Superpowers：给你的 AI 编程助手装上「资深工程师」的大脑</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2026-04-13</span></span><span class="post-meta-item post-meta-item--category"><span class="post-meta-item__icon"><i class="far fa-folder"></i></span><span class="post-meta-item__info">分类于</span><span class="post-meta-item__value"><a href="/categories/AI%E5%BA%94%E7%94%A8/">AI应用</a></span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+
+<p>现在大部分人用 AI 编程工具，还停留在<strong>「问一句、答一句」</strong>的阶段。</p>
+
+<p>你让它写个函数，它写完了。你让它改个 bug，它改了。看着挺智能，但总觉得差点意思——它像个听话的实习生，而不是一个能独立完成项目的资深工程师。</p>
+
+<p>而今天要介绍的 <strong>Superpowers</strong>，就是一套给 AI 编程助手装的<strong>「资深工程师工作流」</strong>。装上之后，你的 AI 编程助手就不再是只会「你问我答」的工具人了，而是一个会思考、会规划、会自我审查的真正工程师。</p>
+
+<blockquote>
+<p>项目地址：<a href="https://github.com/obra/superpowers" target="_blank">https://github.com/obra/superpowers</a><br>
+Stars：149k+ ⭐ | 开源协议：MIT</p>
+</blockquote>
+
+<hr>
+
+<h2>一、Superpowers 是什么？</h2>
+
+<p>一句话概括：<strong>Superpowers 是一套完整的软件开发工作流框架</strong>，由一组可组合的「技能（Skills）」和初始指令组成，安装到你的 AI 编程助手上之后，它会自动按照专业工程师的工作方式来执行任务。</p>
+
+<p>它不是一个独立的软件或编辑器，而是一个<strong>插件</strong>，可以安装到 Claude Code、Cursor、Codex、Gemini CLI 等主流 AI 编程工具上。</p>
+
+<p>装上它之后，你的 AI 助手做项目的方式会发生根本性变化：</p>
+
+<table>
+<thead><tr><th style="text-align:left">维度</th><th style="text-align:left">没有 Superpowers</th><th style="text-align:left">有 Superpowers</th></tr></thead>
+<tbody>
+<tr><td>接到需求后</td><td>上来就写代码</td><td>先问清楚你到底想做什么</td></tr>
+<tr><td>写代码前</td><td>没有计划，走到哪算哪</td><td>输出一份详细的实现计划</td></tr>
+<tr><td>写代码时</td><td>一口气写完，不管对错</td><td>TDD 驱动，先写测试再写代码</td></tr>
+<tr><td>写完代码后</td><td>扔给你就完事了</td><td>自动做 Code Review，发现问题主动修</td></tr>
+<tr><td>自主开发能力</td><td>问一句答一句</td><td>可以连续自主工作数小时不跑偏</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>二、它具体能干嘛？——7 个核心技能</h2>
+
+<p>Superpowers 的核心是一组<strong>自动触发的技能</strong>，不需要你手动调用，AI 会在合适的时机自动激活对应技能。下面是完整的工作流程：</p>
+
+<h3>技能 1：Brainstorming（脑暴）</h3>
+
+<p><strong>触发时机：</strong>在写任何代码之前。</p>
+
+<p>AI 不会上来就动手，而是先跟你「对齐需求」。它会一步步问你一串问题：</p>
+
+<ul>
+<li>你想解决什么问题？</li>
+<li>目标用户是谁？</li>
+<li>有没有参考产品？</li>
+<li>核心功能有哪些？</li>
+<li>有什么技术约束？</li>
+</ul>
+
+<p>问完之后，它会输出一份<strong>设计文档</strong>，而且会拆成短小的段落给你看，确保你真的看了、理解了、认可了，而不是一口气丢一面墙的文字。</p>
+
+<h3>技能 2：Using Git Worktrees（Git 工作树）</h3>
+
+<p><strong>触发时机：</strong>设计方案通过之后。</p>
+
+<p>在你的项目里创建一个隔离的工作空间（新的 Git 分支 + worktree），跑一遍项目初始化，确保测试基线是干净的。这样即使 AI 写崩了，也不会污染你的主分支。</p>
+
+<h3>技能 3：Writing Plans（写实现计划）</h3>
+
+<p><strong>触发时机：</strong>设计方案通过之后。</p>
+
+<p>把工作拆成一堆<strong>小任务</strong>，每个任务控制在 2-5 分钟完成的粒度。每个任务都包含：</p>
+
+<ul>
+<li>要改的文件路径</li>
+<li>具体要写的代码</li>
+<li>验证步骤</li>
+</ul>
+
+<p>计划写得足够清晰——清晰到「一个热情但没经验的初级工程师也能照着做」的程度。</p>
+
+<h3>技能 4：Subagent-Driven Development（子代理驱动开发）</h3>
+
+<p><strong>触发时机：</strong>计划就绪之后。</p>
+
+<p>这是 Superpowers 最牛的地方。它会给每个任务<strong>派一个全新的子代理</strong>去执行，执行完之后做<strong>两轮审查</strong>：</p>
+
+<ol>
+<li><strong>第一轮——规格审查：</strong>检查是否严格按照计划完成</li>
+<li><strong>第二轮——质量审查：</strong>检查代码质量、风格、潜在问题</li>
+</ol>
+
+<p>审查通过才继续下一个任务。正是因为这种机制，Claude 可以<strong>连续自主工作几个小时</strong>而不跑偏。</p>
+
+<h3>技能 5：Test-Driven Development（TDD 测试驱动开发）</h3>
+
+<p><strong>触发时机：</strong>写代码时全程生效。</p>
+
+<p>严格执行 <strong>RED-GREEN-REFACTOR</strong> 循环：</p>
+
+<ol>
+<li><strong>RED：</strong>先写一个失败的测试</li>
+<li><strong>GREEN：</strong>写最少的代码让测试通过</li>
+<li><strong>REFACTOR：</strong>重构代码，确保测试仍然通过</li>
+</ol>
+
+<p>如果你先写了代码再补测试？<strong>不好意思，Superpowers 会删掉你的代码，要求你从测试写起。</strong></p>
+
+<h3>技能 6：Requesting Code Review（代码审查）</h3>
+
+<p><strong>触发时机：</strong>每完成一个任务。</p>
+
+<p>每个任务之间都会做一次 Review，按照严重程度分级上报。如果发现了<strong>关键问题</strong>，会直接阻止继续开发，必须先修好。</p>
+
+<h3>技能 7：Finishing a Development Branch（收尾）</h3>
+
+<p><strong>触发时机：</strong>所有任务完成后。</p>
+
+<p>最后一步，AI 会：</p>
+
+<ul>
+<li>跑一遍完整测试，确保全部通过</li>
+<li>让你选择：合并到主分支 / 提 PR / 保留分支 / 放弃</li>
+<li>清理 worktree</li>
+</ul>
+
+<hr>
+
+<h2>三、为什么 Superpowers 这么厉害？</h2>
+
+<p>核心原因是它把<strong>资深工程师的完整工作方法论</strong>系统化地编码成了 AI 可执行的规则。</p>
+
+<p>背后的设计哲学是四条铁律：</p>
+
+<ol>
+<li><strong>测试驱动：</strong>先写测试，永远先写测试</li>
+<li><strong>系统化优先于临时起意：</strong>流程大于灵感，不要凭感觉猜</li>
+<li><strong>降低复杂度：</strong>简洁是首要目标（YAGNI + DRY）</li>
+<li><strong>证据大于宣称：</strong>说「搞定了」之前先跑测试验证，不要嘴上说修好了实际没有</li>
+</ol>
+
+<p>你可能会觉得这不就是正常工程师的工作方式吗？是的，但问题在于——<strong>大部分 AI 编程助手默认不会这么做</strong>。</p>
+
+<p>没有 Superpowers 的 AI，就像一个刚毕业的实习生：聪明、手速快、但没有工程素养。Superpowers 做的事情，就是把老法师的经验和纪律灌进它的脑子里。</p>
+
+<hr>
+
+<h2>四、怎么用？——各平台安装指南</h2>
+
+<p>安装非常简单，一行命令搞定。以下是各个平台的安装方式：</p>
+
+<h3>Claude Code（推荐）</h3>
+
+<p>官方插件市场直装，最简单：</p>
+
+<pre><code class="language-bash">/plugin install superpowers@claude-plugins-official</code></pre>
+
+<p>或者通过第三方市场：</p>
+
+<pre><code class="language-bash"># 先注册市场
+/plugin marketplace add obra/superpowers-marketplace
+
+# 再安装插件
+/plugin install superpowers@superpowers-marketplace</code></pre>
+
+<h3>Cursor</h3>
+
+<p>在 Cursor Agent 聊天中输入：</p>
+
+<pre><code class="language-text">/add-plugin superpowers</code></pre>
+
+<p>或者在插件市场搜索 <code>superpowers</code> 安装。</p>
+
+<h3>Codex</h3>
+
+<p>告诉 Codex 执行以下指令：</p>
+
+<pre><code class="language-text">Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.codex/INSTALL.md</code></pre>
+
+<h3>GitHub Copilot CLI</h3>
+
+<pre><code class="language-bash">copilot plugin marketplace add obra/superpowers-marketplace
+copilot plugin install superpowers@superpowers-marketplace</code></pre>
+
+<h3>Gemini CLI</h3>
+
+<pre><code class="language-bash">gemini extensions install https://github.com/obra/superpowers</code></pre>
+
+<h3>验证安装是否成功</h3>
+
+<p>安装完成后，开一个<strong>新的会话</strong>，随便跟它说个开发需求，比如：</p>
+
+<blockquote>
+<p>「帮我做一个 Todo 应用」</p>
+</blockquote>
+
+<p>如果它<strong>没有立刻开始写代码</strong>，而是反过来问你一堆问题——恭喜你，Superpowers 已经生效了。</p>
+
+<hr>
+
+<h2>五、我的实际体验</h2>
+
+<p>我用 Claude Code 搭载 Superpowers 做了一个小网站测试，实际体验下来就两个字：<strong>丝滑</strong>。</p>
+
+<p>整个过程是这样的：</p>
+
+<ol>
+<li>我说了一句「帮我做一个 xxx 网站」</li>
+<li>它先问了我七八个问题，主题、风格、功能、技术栈…确保我想清楚了</li>
+<li>然后给了我一份设计文档，分段让我确认</li>
+<li>我说「没问题，开搞」</li>
+<li>它拆了一份非常详细的实现计划</li>
+<li>然后开始一个任务一个任务地自主执行</li>
+<li>每完成一个任务自动 Review，有问题自己修</li>
+<li>最终一次性交付了一个完整能跑的项目</li>
+</ol>
+
+<p>整个过程我几乎没怎么插手，它就像一个有条有理的同事，拿到需求后自己安排节奏一步步做下来。</p>
+
+<p>最关键的是——<strong>它不会跑偏</strong>。因为有计划在前面兜着，每个任务做完都会对照计划审查，所以不会出现「越写越偏、改着改着把之前的功能搞坏了」这种经典 AI 翻车现场。</p>
+
+<hr>
+
+<h2>六、Superpowers 还有哪些隐藏技能？</h2>
+
+<p>除了上面提到的 7 个核心工作流技能，Superpowers 还内置了几个非常实用的辅助技能：</p>
+
+<h3>调试类</h3>
+
+<ul>
+<li><strong>systematic-debugging：</strong>系统化的 4 阶段根因分析流程，而不是瞎猜</li>
+<li><strong>verification-before-completion：</strong>修完 bug 之后要验证真的修好了，而不是嘴上说修好了</li>
+</ul>
+
+<h3>协作类</h3>
+
+<ul>
+<li><strong>dispatching-parallel-agents：</strong>可以同时派多个子代理并行执行不同任务</li>
+<li><strong>receiving-code-review：</strong>收到代码审查反馈后的处理流程</li>
+</ul>
+
+<h3>元技能</h3>
+
+<ul>
+<li><strong>writing-skills：</strong>教你（或者 AI 自己）编写新的技能</li>
+<li><strong>using-superpowers：</strong>整个技能系统的使用说明</li>
+</ul>
+
+<hr>
+
+<h2>七、更新和社区</h2>
+
+<p>Superpowers 采用 MIT 开源协议，社区非常活跃：</p>
+
+<ul>
+<li><strong>更新：</strong>一行命令即可更新到最新版本
+<pre><code class="language-bash">/plugin update superpowers</code></pre>
+</li>
+<li><strong>Discord 社区：</strong><a href="https://discord.gg/35wsABTejz" target="_blank">加入讨论</a></li>
+<li><strong>GitHub Issues：</strong><a href="https://github.com/obra/superpowers/issues" target="_blank">反馈问题</a></li>
+<li><strong>作者：</strong>Jesse Vincent，<a href="https://primeradiant.com" target="_blank">Prime Radiant</a> 团队</li>
+</ul>
+
+<hr>
+
+<h2>八、总结</h2>
+
+<p>Superpowers 的价值用一句话概括：</p>
+
+<blockquote>
+<p><strong>它把「AI 编程助手」从一个听话的实习生，升级成了一个有工程素养的资深工程师。</strong></p>
+</blockquote>
+
+<p>如果你正在用 Claude Code、Cursor、Codex 等 AI 编程工具，强烈建议装上 Superpowers 试试。你体验过之后就知道，什么叫「AI 帮你做项目」，而不是「AI 帮你写代码」——这两者的差距，比你想象的大得多。</p>
+
+<p>如果你想进一步探讨 AI 编程的话题，欢迎关注公众号「AI早咖啡」，或者直接加我微信 <strong>myddd9527</strong> 交流！</p>
+
+<hr>
+
+<div style="text-align: center; margin-top: 30px;">
+<img src="/images/aizaokafeiqr.jpg" alt="微信公众号：AI早咖啡" style="max-width: 220px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+<p style="color: #666; font-size: 0.9em;">微信扫一扫 关注「AI早咖啡」</p>
+</div>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI/">AI</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI编程/">AI编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/Claude-Code/">Claude Code</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2026/04/12/pension-reality/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">月均205元：2.6亿农村老人的养老困局，你的父母能领多少？</span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/logo/logo.jpeg" alt="avatar"></div><p class="sidebar-ov-author__text">鸭知道</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">30</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">17</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2026</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>鸭知道</span><span class="footer__devider">|</span><span>浙ICP备19020857号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>

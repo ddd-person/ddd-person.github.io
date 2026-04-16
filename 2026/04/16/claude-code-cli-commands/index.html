@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="Claude Code CLI 常用命令教程。当你不知道该从何下手，只需使用 /plan 命令，它会一步步跟你确认需求，不仅给你执行计划，更保证它不会凭空乱写代码，找回对 AI 编程的极致掌控。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code CLI 实用命令指南：用好 /plan，让 AI 想清楚再动手">
+<meta property="og:url" content="http://ddd-person.github.io/2026/04/16/claude-code-cli-commands/">
+<meta property="og:site_name" content="鸭知道-个人博客">
+<meta property="og:description" content="Claude Code CLI 常用命令教程。当你不知道该从何下手，只需使用 /plan 命令，它会一步步跟你确认需求，不仅给你执行计划，更保证它不会凭空乱写代码，找回对 AI 编程的极致掌控。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-16T00:00:00.000Z">
+<meta property="article:author" content="鸭知道">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Claude">
+<meta property="article:tag" content="CLI">
+<meta name="twitter:card" content="summary"><title>Claude Code CLI 实用命令指南：用好 /plan，让 AI 想清楚再动手 | 鸭知道-个人博客</title><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script>
+<style>
+.post-body pre {
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 20px 0;
+  border-left: 4px solid #7c6af7;
+}
+.post-body pre code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: #cdd6f4;
+  background: transparent;
+  white-space: pre;
+  tab-size: 4;
+}
+.post-body code:not(pre code) {
+  background: #e8e8f0;
+  color: #5c5c8a;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.88em;
+}
+</style>
+<meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="th"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="archive"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">鸭知道-个人博客</div><div class="header-banner-info__subtitle"></div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Claude Code CLI 实用命令指南：用好 /plan，让 AI 想清楚再动手</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2026-04-16</span></span><span class="post-meta-item post-meta-item--category"><span class="post-meta-item__icon"><i class="far fa-folder"></i></span><span class="post-meta-item__info">分类于</span><span class="post-meta-item__value"><a href="/categories/AI%E5%BA%94%E7%94%A8/">AI应用</a></span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+
+<p>我们用 AI 写代码时通常会有这种烦恼：遇到一个需求，直接对着 AI 丢过去几句话，它不管三七二十一，瞬间劈里啪啦扔出几百行代码。</p>
+
+<p>等你定睛一看，方向全错，不但原路退不回去，你还得给盲目的它收拾烂摊子。</p>
+
+<p>怎么才能防止 AI "瞎写代码"？这时候，<strong>Claude Code CLI</strong> 命令行工具最精华的宝藏命令就派上用场了。</p>
+
+<hr>
+
+<h2>一、Claude Code 是什么？</h2>
+
+<p>一句话总结：它是 Anthropic 官方出品的 <strong>AI 编程命令行原生工具</strong>，是可以真正在你终端里读写项目文件的智能开发伙伴。</p>
+
+<p>不同于网页版聊天的文本局限，它直接接管你的项目开发环境，并能主动帮你执行脚本和各类终端命令审核。</p>
+
+<hr>
+
+<h2>二、它能干嘛？实用命令大盘点</h2>
+
+<p>比起枯燥的盲猜开发流，它内置了几条能成倍提升生产力的核心指令。</p>
+
+<h3>1. <code>/plan</code>：让 AI "三思而后行"</h3>
+
+<p>这是整个 CLI 当中名副其实的“镇库之宝”！当你使用 <code>/plan [你的需求]</code> 时，它将进入绝对沉静的<strong>计划模式</strong>。</p>
+
+<p>在这个模式下，它<strong>绝对不会急于输出任何代码</strong>，而是像一个缜密的资深架构师，严格地向你出具步骤分解方案。比如要改什么文件、定什么接口约定、分几个关键阶段。唯有你拍板同意后，它才会切换模式并开始动工。</p>
+
+<h3>2. <code>/compact</code>：卸下包袱的神器</h3>
+
+<p>聊着聊着，上百个回合过去后上下文马上被挤爆（导致响应变慢、它开始记混细节）。</p>
+<p>你可以大呼一声 <code>/compact 删除寒暄和走弯路的沟通，只保留登录模块的数据表建立逻辑</code>。它刻意提纯信息，节约 Token，让你俩脑筋重新变灵光。</p>
+
+<h3>3. <code>/clear</code>：毫不留情的清脑丸</h3>
+
+<p>当你终于刚搞定一个庞杂的遗留 Bug，现在要全身心投入一个无关的新报表开发。一条 <code>/clear</code> 断舍离，斩断所有历史记录上下文，彻底防串台。</p>
+
+<h3>4. <code>/bug</code>：快速联络渠道</h3>
+
+<p>一旦触发 Anthropic 的核心抽风机制，直接在命令行里敲 <code>/bug</code> 提交带诊断信息的官方反馈，省时省力。</p>
+
+<hr>
+
+<h2>三、为什么这么厉害？</h2>
+
+<p>它颠覆了普通 AI 工具那种 <strong>"人类瞎猜意图式" 的赌博机制</strong>。</p>
+
+<p>它不想完全替代人类的心智控制权，通过 <code>/plan</code> 的多方确认，它把终局拍板权还给了最适合统筹的人类。这种良性约束，让它摆脱出纯粹的"猴子打字机"状态。</p>
+
+<hr>
+
+<h2>四、怎么用？</h2>
+
+<p>完全零门槛（只要你有 Node 环境）：</p>
+
+<ol>
+<li><strong>全局安装利器</strong>：
+<pre><code class="language-bash">npm install -g @anthropic-ai/claude-code</code></pre></li>
+<li><strong>进入项目启动大门</strong>：
+<pre><code class="language-bash">cd 你的项目代码目录/
+claude</code></pre></li>
+<li><strong>高光时刻触发</strong>：
+<pre><code class="language-bash">/plan 这个项目需要接入支付宝支付，帮我规划下接口</code></pre></li>
+</ol>
+
+<hr>
+
+<h2>五、实际体验：从"擦屁股"到真正的结对编程</h2>
+
+<p>我以前用网页版或是其他的 IDE 插件助手，总是提心吊胆，生怕没描述清细节导致它狂奔输出不能跑的神仙代码。但在 Claude Code 上我体验到了前所未有的舒心。</p>
+
+<p>当你脑子里只有一个大概的功能雏形时敲下 <code>/plan</code>，<strong>他会实打实跟你一步步确认需求，然后才极其工整地给你提供执行计划，再也不会乱写代码！</strong>不但帮你把含糊的思路拨云见日，更免除了你事后在成堆 bug 废代码里捞人的灾难。这就是如假包换的高级生产力。</p>
+
+<hr>
+
+<h2>六、进阶/隐藏玩法</h2>
+
+<p>与其每次口头提醒规范，不如用契约精神约束它：在项目根目录创建一个 <code>CLAUDE.md</code> 的只读文件，写死你们的技术栈和铁律（例如：“任何业务抛异常前只用日志记录”）。哪怕你后续 <code>/plan</code> 闭口不谈规则，它照样倒背如流，规规矩矩办事。</p>
+
+<hr>
+
+<h2>七、总结</h2>
+
+<p>AI 的杀伤力不在于刷代码的字符数度，而在于精准无误。想从“修 bug 的苦工”中抽身，多动动嘴皮用 <code>/plan</code> ，让 AI 指挥自己。</p>
+
+<p>如果你想进一步探讨 AI 编程的话题，欢迎关注公众号「AI早咖啡」，或者直接加我微信 <strong>myddd9527</strong> 交流！</p>
+
+<hr>
+
+<div style="text-align: center; margin-top: 30px;">
+<img src="/images/aizaokafeiqr.jpg" alt="微信公众号：AI早咖啡" style="max-width: 220px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+<p style="color: #666; font-size: 0.9em;">微信扫一扫 关注「AI早咖啡」</p>
+</div>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/AI/">AI</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/Claude/">Claude</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="/tags/CLI/">CLI</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2026/04/14/managed-agents-guide/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Managed Agents：当 AI 本身成为操作系统</span></a></div></nav></footer></div></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/logo/logo.jpeg" alt="avatar"></div><p class="sidebar-ov-author__text">鸭知道</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">31</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">19</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2026</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>鸭知道</span><span class="footer__devider">|</span><span>浙ICP备19020857号</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>
